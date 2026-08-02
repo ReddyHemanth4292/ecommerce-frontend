@@ -1,14 +1,13 @@
 import QuantitySelector from './QuantitySelector'
-function ProductCard() {
+function ProductCard({ name, brand, price }) {
     return (
-    <div>
-      <h2>iPhone 15</h2>
-      <p>Apple</p>
-      <p>₹60,000</p>
-      <QuantitySelector />
-      <button>Add to Cart</button>
-    </div>
-    )
+        <div>
+            <h3>{name}</h3>
+            <p>{brand}</p>
+            <p>₹{price}</p>
+            <button>View Product</button>
+        </div>
+    );
 }
 
 export default ProductCard;
