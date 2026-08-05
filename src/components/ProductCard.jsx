@@ -3,7 +3,7 @@ import QuantitySelector from "./QuantitySelector";
 function ProductCard({product}) {
   const [quantity, setQuantity] = useState(1);
   return (
-    <div>
+    <div key={product.id}>
       <h3>{product.name}</h3>
       <p>{product.brand}</p>
       <p>₹{product.price}</p>
