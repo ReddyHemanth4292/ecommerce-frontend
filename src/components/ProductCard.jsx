@@ -1,5 +1,6 @@
 import { useState } from "react";
 import QuantitySelector from "./QuantitySelector";
+import { Link } from "react-router-dom";
 function ProductCard({product}) {
   const [quantity, setQuantity] = useState(1);
   return (
@@ -15,10 +16,11 @@ function ProductCard({product}) {
 
         <span>{quantity}</span>
 
-        <button onClick={() => {setQuantity(quantity + 1)}}>+</button>
+        <button onClick={() => {if (quantity < product.quantity) { setQuantity(quantity + 1); }}}>+</button>
       </div>
       <div>Total: ₹{quantity*product.price}</div>
       <button>Add to Cart</button>
+      <Link to={`/products/${product.id}`}>View Details</Link>
     </div>
   );
 }
