@@ -3,41 +3,38 @@ import { getProducts } from "../services/productService";
 import { useEffect, useState } from "react";
 
 function ProductList() {
-    const [products, setProducts]=useState([]);
-    const [loading, setLoading]=useState(true);
-    const [error, setError]=useState("");
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-    useEffect(()=> {
-        const fetchProducts = async() => {
-            try{
-                const data= await getProducts();
-                setProducts(data.content);
-            }
-            catch(error){
-                setError("Unable to load products");
-            }
-            finally{
-                setLoading(false);
-            }
-        };
-        fetchProducts();
-    }, []);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await getProducts();
+        setProducts(data.content);
+      } catch (error) {
+        setError("Unable to load products");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, []);
 
-    if(loading){
-        return <p>{error}</p>;
-    }
-    
+  if (loading) {
+    return <p>Loading products...</p>;
+  }
+  if (error) {
+    return <p>{error}</p>;
+  }
 
-    return (
-        <div>
-            {products.map(product => (
-                <ProductCard
-                    key={product.id}
-                    product={product}
-                />
-            ))}
-        </div>
-    );
+  return (
+    <div>
+      {products.map((product) => (
+        <ProductCard key={product.id} product={product} />
+      ))}
+    </div>
+  );
 }
 
 export default ProductList;

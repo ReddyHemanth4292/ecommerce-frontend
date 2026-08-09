@@ -10,8 +10,8 @@ export const getProducts= async() => {
 
 export const getProductById = async(id) => {
     const response=await fetch(`${API_URL}/${id}`);
-    if(!response!=0){
-        return new Error("Failed to fetch product");
+    if(!response.ok){
+        throw new Error("Failed to fetch product");
     }
     return response.json();
 }

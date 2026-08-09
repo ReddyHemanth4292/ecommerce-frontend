@@ -1,3 +1,4 @@
+import { useState } from "react";
 function QuantitySelector() {
     const [quantity, setQuantity] = useState(1)
       const increaseQuantity = () => {
@@ -6,7 +7,7 @@ function QuantitySelector() {
 
     const decreaseQuantity = () => {
         if(quantity>1){
-            setQuantity(i-1);
+            setQuantity(quantity-1);
         }
     }
     return (
