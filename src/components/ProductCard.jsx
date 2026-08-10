@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 function ProductCard({product}) {
   const [quantity, setQuantity] = useState(1);
   return (
-    <div key={product.id}>
+    <div key={product.id} className="product-card">
       <h3>{product.name}</h3>
       <p>{product.brand}</p>
       <p>₹{product.price}</p>
       <p>SKU: {product.sku}</p>
       <p>Stock: {product.quantity}</p>
       <p></p>
-      <div>
+      <div className="quantity-selector">
         <button onClick={() => {if(quantity>1){setQuantity(quantity - 1)}}}>-</button>
 
         <span>{quantity}</span>

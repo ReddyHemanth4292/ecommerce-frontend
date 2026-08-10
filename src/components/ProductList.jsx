@@ -29,10 +29,13 @@ function ProductList() {
   }
 
   return (
-    <div>
-      {products.map((product) => (
-        <ProductCard key={product.id} product={product} />
-      ))}
+    <div className="product-list">
+      <h2>Products</h2>
+      <div className="product-grid">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
     </div>
   );
 }
