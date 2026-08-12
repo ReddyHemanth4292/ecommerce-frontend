@@ -8,6 +8,7 @@ import ProductCard from "./components/ProductCard";
 import Navbar from "./components/Navbar";
 import ProductList from "./components/ProductList";
 import ProductDetails from "./components/ProductDetails";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/products" element={<ProductList />} />
         <Route path="/products/:id" element={<ProductDetails />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   );
