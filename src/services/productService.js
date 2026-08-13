@@ -1,17 +1,9 @@
 import { getToken } from "../utils/auth";
+import { apiRequest } from "./api";
 const API_URL="http://localhost:8080/api/products";
 
 export const getProducts= async() => {
-    const token = getToken();
-    const response=await fetch(API_URL,{
-        headers: {
-            Authorization:`Bearer ${token}`
-        }
-    });
-    if (!response.ok) {
-        throw new Error("Failed to fetch products");
-    }
-    return response.json();
+    return apiRequest("/api/products");
 }
 
 export const getProductById = async(id) => {

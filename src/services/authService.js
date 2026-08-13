@@ -1,31 +1,16 @@
+import { apiRequest } from "./api";
 const API_URL="http://localhost:8080/api/auth";
 
 export const registerUser = async (userData) => {
-    const response=await fetch(`${API_URL}/register`,{
+    return apiRequest("/api/auth/register", {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(userData)
+        body: JSON.stringify(userData),
     });
-
-    if(!response.ok){
-        throw new Error("Registration Failed");
-    }
-    return response.json;
 };
 
 export const loginUser = async (loginData) => {
-    const response= await fetch (`${API_URL}/login`,{
-        method:"POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(loginData)
+    return apiRequest("/api/auth/login", {
+        method: "POST",
+        body: JSON.stringify(loginData),
     });
-
-    if(!response.ok){
-        throw new Error("Login failed");
-    }
-    return response.json();
 }
