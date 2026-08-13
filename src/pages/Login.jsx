@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { loginUser } from "../services/authService";
+import { saveToken } from "../utils/auth";
 function login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
@@ -11,7 +12,7 @@ function login() {
     setError("");
     try {
       const data = await loginUser(formData);
-      localStorage.setItem("token", data.token);
+      saveToken(data.token);
       console.log("Login successful");
       console.log(data);
     } catch (error) {
@@ -41,7 +42,7 @@ function login() {
             onChange={handleChange}
           ></input>
         </div>
-        <button onSubmit={handleSubmit}>Login</button>
+        <button>Login</button>
       </form>
       {error && <p>{error}</p>}
     </div>
