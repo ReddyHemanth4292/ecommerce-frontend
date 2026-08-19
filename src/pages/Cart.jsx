@@ -1,13 +1,34 @@
 import { useEffect, useState } from "react";
 import { getCart } from "../services/cartService";
+import {
+  removeCartItem,
+  updateCartItem,
+  clearCart,
+} from "../services/cartService";
 
 function cart() {
   const [cart, setCart] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const handleAddQuantity = async (cartItemId, currentQuantity) => {
+    try {
+      setLoading(true);
+      setError("");
+      const newQuantity = currentQuantity + 1;
+      await updateCartItem(cartItemId, newQuantity);
+      const updatedCart = await getCart();
+      setCart(updatedCart);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
   useEffect(() => {
     const fetchCart = async () => {
       try {
+        setLoading(true);
+        setError("");
         const data = await getCart();
         setCart(data);
       } catch (error) {
@@ -36,6 +57,7 @@ function cart() {
           <p>Price: {item.price}</p>
           <p>Quantity: {item.quantity}</p>
           <p>Subtotal: ₹{item.subtotal}</p>
+          <button>+</button>
         </div>
       ))}
       <hr />
