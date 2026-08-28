@@ -25,5 +25,11 @@ export const apiRequest = async (url, options = {}) => {
 
     throw new Error(`Request failed with status ${response.status}`);
   }
-  return response.json();
+  const contentType = response.headers.get("content-type");
+
+  if (contentType && contentType.includes("application/json")) {
+    return response.json();
+  }
+
+  return response.text();
 };

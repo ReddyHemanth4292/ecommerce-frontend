@@ -11,10 +11,11 @@ import ProductDetails from "./components/ProductDetails";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
+import OrderDetailsPage from "./pages/OrderDetailsPage";
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <Navbar />
       <Routes>
         <Route path="/products" element={<ProductList />} />
@@ -22,8 +23,9 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/orders/:id" element={<OrderDetailsPage />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 

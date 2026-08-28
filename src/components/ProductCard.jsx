@@ -2,11 +2,15 @@ import { useState } from "react";
 import QuantitySelector from "./QuantitySelector";
 import { Link } from "react-router-dom";
 import { addToCart } from "../services/cartService";
+import { useCart } from "../context/CartContext";
 function ProductCard({ product }) {
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+
+  const { refreshCart } = useCart();
+
   const handleAddToCart = async () => {
     try {
       setLoading(true);
@@ -15,6 +19,7 @@ function ProductCard({ product }) {
       for (let i = 0; i < quantity; i++) {
         await addToCart(product.id);
       }
+      await refreshCart();
       setMessage("Product added to Cart");
     } catch {
       setError(error.message);
