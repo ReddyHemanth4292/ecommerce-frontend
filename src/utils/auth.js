@@ -10,3 +10,34 @@ export const removeToken= ()=>{
 export const isLoggedIn=()=>{
     return !!localStorage.getItem("token");
 }
+export const isAuthenticated = () => {
+    return !!getToken();
+};
+
+export const getTokenPayload=()=>{
+    const token=getToken();
+    if(!token){
+        return null;
+    }
+    try{
+        const payload=token.split(".")[1];
+        const decodedPayload=atob(payload.replace(/-/g, "+").replace(/_/g, "/"));
+        return JSON.parse(decodedPayload);
+    }
+    catch(error){
+        console.error("Invalid JWT token");
+        return null;
+    }
+}
+
+export const hasRole=(requiredRole)=>{
+    const payload=getTokenPayload();
+    if(!payload){
+        return false;
+    }
+    const role=payload.role;
+    if(!role){
+        return false;
+    }
+    return role===requiredRole || role===`ROLE_${requiredRole}`;
+}

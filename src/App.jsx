@@ -14,6 +14,9 @@ import Cart from "./pages/Cart";
 import OrderDetailsPage from "./pages/OrderDetailsPage";
 import OrdersPage from "./pages/OrdersPage";
 import UserProfile from "./components/UserProfile";
+import Unauthorized from "./pages/Unauthorized";
+import ProtectedRoute from "./components/ProtectedRoute";
+import AdminDashboard from "./pages/AdminDashboard";
 
 function App() {
   return (
@@ -28,6 +31,15 @@ function App() {
         <Route path="/orders/:id" element={<OrderDetailsPage />} />
         <Route path="/orders" element={<OrdersPage />} />
         <Route path="/profile" element={<UserProfile />} />
+        <Route path="/unauthorized" element={<Unauthorized />} />
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute requiredRole="ADMIN">
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </>
   );
