@@ -18,6 +18,7 @@ import Unauthorized from "./pages/Unauthorized";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminRoute from "./components/AdminRoute";
+import AdminProductManagement from "./pages/admin/AdminProductManagement";
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
             </AdminRoute>
           }
         />
+        <Route path="/admin/products" element={<AdminProductManagement />} />
         {/* <Route
           path="/admin/dashboard"
           element={

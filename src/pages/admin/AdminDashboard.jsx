@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { apiRequest } from "../../services/api";
+import { Link } from "react-router-dom";
 
 function AdminDashboard() {
   const [totalProducts, setTotalProducts] = useState(0);
@@ -61,6 +62,7 @@ function AdminDashboard() {
           <p>₹{totalRevenue}</p>
         </div>
       </div>
+      <Link to="/admin/products">Product Management</Link>
     </div>
   );
 }
