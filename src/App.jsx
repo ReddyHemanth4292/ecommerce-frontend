@@ -16,7 +16,8 @@ import OrdersPage from "./pages/OrdersPage";
 import UserProfile from "./components/UserProfile";
 import Unauthorized from "./pages/Unauthorized";
 import ProtectedRoute from "./components/ProtectedRoute";
-import AdminDashboard from "./pages/AdminDashboard";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminRoute from "./components/AdminRoute";
 
 function App() {
   return (
@@ -35,11 +36,19 @@ function App() {
         <Route
           path="/admin/dashboard"
           element={
+            <AdminRoute>
+              <AdminDashboard />
+            </AdminRoute>
+          }
+        />
+        {/* <Route
+          path="/admin/dashboard"
+          element={
             <ProtectedRoute requiredRole="ADMIN">
               <AdminDashboard />
             </ProtectedRoute>
           }
-        />
+        /> */}
       </Routes>
     </>
   );
